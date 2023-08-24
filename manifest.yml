@@ -6,11 +6,17 @@ applications:
     memory: 1024M
     buildpacks:
       - sap_java_buildpack
+    JBP_CONFIG_JAVA_OPTS: "[java_opts: '-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n,onjcmd=y']"
     env:
       TARGET_RUNTIME: tomcat
-      JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jdk.SAPMachineJDK']"
+      JBP_CONFIG_COMPONENTS: "jres: ['com.sap.xs.java.buildpack.jre.SAPMachineJRE']"
+      JBP_CONFIG_SAP_MACHINE_JDK: "[default_debug_agent_active: false]"
+      SPRING_PROFILES_ACTIVE: cloud
     services:
-      - javauaa
+      - saas-registry-tutorial
+      - xsuaa-service-tutorial
+      - mydb
+      - helloworld-logs
   - name: web
     random-route: true
     path: web
@@ -20,9 +26,10 @@ applications:
         [
           {
             "name":"helloworld",
-            "url":"https://helloworld-timely-hyrax-kw.cfapps.us10-001.hana.ondemand.com/",
+            "url":"https://helloworld-exhausted-jackal-uh.cfapps.us10-001.hana.ondemand.com/",
             "forwardAuthToken": true
           }
         ]
+      TENANT_HOST_PATTERN: "^(.*)-web-bogus-roan-gx.cfapps.us10-001.hana.ondemand.com"
     services:
-      - javauaa
+      - xsuaa-service-tutorial

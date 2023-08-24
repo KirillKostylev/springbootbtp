@@ -29,7 +29,7 @@ public class WebSecurityConfig {
                 .and()
                 // demand specific scopes depending on intended request
                 .authorizeRequests()
-
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .anyRequest().denyAll() // deny anything not configured above
                 .and()

@@ -1,0 +1,9 @@
+{
+  "xsappname":"helloworld",
+  "appUrls": {
+    "onSubscription" : "https://helloworld-exhausted-jackal-uh.cfapps.us10-001.hana.ondemand.com/callback/v1.0/tenants/{tenantId}"
+  },
+  "displayName" : "Helloworld displayName MTA",
+  "description" : "Helloworld description MTA sample application",
+  "category" : "Custom SaaS Applications"
+}
